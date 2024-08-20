@@ -12,5 +12,9 @@ public class HotelDTO {
     private String location;
     private int starRating;
     private String phone;
+    private int price;
+    private String amenities;
+    private int rooms;
+
 
 }

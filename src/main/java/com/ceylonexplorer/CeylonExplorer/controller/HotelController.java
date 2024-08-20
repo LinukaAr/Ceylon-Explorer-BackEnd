@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/hotels")
 public class HotelController {
+
     @Autowired
     private HotelService hotelService;
 
@@ -46,6 +47,9 @@ public class HotelController {
         hotelDTO.setLocation(hotel.getLocation());
         hotelDTO.setStarRating(hotel.getStarRating());
         hotelDTO.setPhone(hotel.getPhone());
+        hotelDTO.setPrice(hotel.getPrice());
+        hotelDTO.setAmenities(hotel.getAmenities());
+        hotelDTO.setRooms(hotel.getRooms());
         return hotelDTO;
     }
 
@@ -56,6 +60,9 @@ public class HotelController {
         hotel.setLocation(hotelDTO.getLocation());
         hotel.setStarRating(hotelDTO.getStarRating());
         hotel.setPhone(hotelDTO.getPhone());
+        hotel.setPrice(hotelDTO.getPrice());
+        hotel.setAmenities(hotelDTO.getAmenities());
+        hotel.setRooms(hotelDTO.getRooms());
         return hotel;
     }
 }

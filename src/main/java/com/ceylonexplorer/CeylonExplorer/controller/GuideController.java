@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/guides")
 public class GuideController {
+
     @Autowired
     private GuideService guideService;
 
@@ -46,6 +47,10 @@ public class GuideController {
         guideDTO.setExperience(guide.getExperience());
         guideDTO.setLanguages(guide.getLanguages());
         guideDTO.setPhone(guide.getPhone());
+        guideDTO.setArea(guide.getArea());
+        guideDTO.setAgeRange(guide.getAgeRange());
+        guideDTO.setGender(guide.getGender());
+        guideDTO.setImage(guide.getImage());//error
         return guideDTO;
     }
 
@@ -56,6 +61,10 @@ public class GuideController {
         guide.setExperience(guideDTO.getExperience());
         guide.setLanguages(guideDTO.getLanguages());
         guide.setPhone(guideDTO.getPhone());
+        guide.setArea(guideDTO.getArea());
+        guide.setAgeRange(guideDTO.getAgeRange());
+        guide.setGender(guideDTO.getGender());
+        guide.setImage(guideDTO.getImage());//error
         return guide;
     }
 }

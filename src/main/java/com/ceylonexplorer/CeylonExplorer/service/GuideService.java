@@ -28,4 +28,6 @@ public class GuideService {
     public void deleteGuide(Long id) {
         guideRepository.deleteById(id);
     }
+
+
 }

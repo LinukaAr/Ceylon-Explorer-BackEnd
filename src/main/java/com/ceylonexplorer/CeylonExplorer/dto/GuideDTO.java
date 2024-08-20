@@ -11,4 +11,8 @@ public class GuideDTO {
     private String experience;
     private String languages;
     private String phone;
+    private String area;
+    private String ageRange;
+    private String gender;
+    private byte[] image;
 }
