@@ -1,10 +1,10 @@
 package com.ceylonexplorer.CeylonExplorer.dto;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
-@Getter
-
+@Getter 
 public class GuideDTO {
     private Long id;
     private String name;
@@ -14,5 +14,6 @@ public class GuideDTO {
     private String area;
     private String ageRange;
     private String gender;
-    private byte[] image;
+    private byte[] image; // Consider using String for Base64 encoded images
 }
+

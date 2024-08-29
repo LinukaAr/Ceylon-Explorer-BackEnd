@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GuideService {
@@ -29,5 +30,18 @@ public class GuideService {
         guideRepository.deleteById(id);
     }
 
+    public void uploadImage(Long guideId, byte[] imageBytes) {
+        Optional<Guide> optionalGuide = guideRepository.findById(guideId);
+    if (optionalGuide.isPresent()) {
+        System.out.println("Received image bytes (service): " + imageBytes.length); // Log size
+        Guide guide = optionalGuide.get();
+        guide.setImage(imageBytes);
+        guideRepository.save(guide); 
+        System.out.println("Image saved to Guide entity");
+    } else {
+            // Handle case where guide with given ID is not found
+            throw new RuntimeException("Guide not found with ID: " + guideId);
+        }
+    }
 
 }

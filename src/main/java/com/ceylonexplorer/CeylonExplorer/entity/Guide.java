@@ -23,5 +23,6 @@ public class Guide {
 //    private String rating;
 
     @Lob
-    private byte[] image; // Use @Lob to store binary data
+    @Column(name = "image", columnDefinition = "BLOB")
+    private byte[] image; 
 }
