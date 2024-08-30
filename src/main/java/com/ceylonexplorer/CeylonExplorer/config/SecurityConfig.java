@@ -45,7 +45,7 @@ public class SecurityConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:5173") // Allow the frontend origin
+                .allowedOrigins("https://linukaar.github.io") // Allow the frontend origin
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Allow the necessary HTTP methods
                 .allowedHeaders("*")
                 .allowCredentials(true);
