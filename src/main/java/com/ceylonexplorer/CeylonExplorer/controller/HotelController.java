@@ -31,21 +31,14 @@ public class HotelController {
         return hotel != null ? ResponseEntity.ok(convertToDTO(hotel)) : ResponseEntity.notFound().build();
     }
 
-
     @PostMapping(consumes = { "multipart/form-data" })
     public HotelDTO createHotel(
             @RequestPart("hotel") String hotelJson,
-            @RequestPart("image") MultipartFile image) {
-        try {
-            HotelDTO hotelDTO = new ObjectMapper().readValue(hotelJson, HotelDTO.class);
-            // Handle the image file as needed
-            Hotel hotel = convertToEntity(hotelDTO);
-            return convertToDTO(hotelService.saveHotel(hotel));
-        } catch (JsonProcessingException e) {
-            // Handle the exception or log the error
-            e.printStackTrace();
-            return null; // or return an appropriate response
-        }
+            @RequestPart("image") MultipartFile image) throws Exception {
+        HotelDTO hotelDTO = new ObjectMapper().readValue(hotelJson, HotelDTO.class);
+        // Handle the image file as needed
+        Hotel hotel = convertToEntity(hotelDTO);
+        return convertToDTO(hotelService.saveHotel(hotel));
     }
 
     @DeleteMapping("/{id}")
