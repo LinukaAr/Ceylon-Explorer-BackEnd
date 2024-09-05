@@ -24,4 +24,6 @@ public class Vehicle {
     private String pricePerDay;
     private String phone;
 
+    @Column(name = "image", columnDefinition = "BLOB")
+    private byte[] image; 
 }

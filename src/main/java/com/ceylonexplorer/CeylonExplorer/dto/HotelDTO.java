@@ -15,6 +15,6 @@ public class HotelDTO {
     private int price;
     private String amenities;
     private int rooms;
-
+    private byte[] image;
 
 }

@@ -12,4 +12,5 @@ public class VehicleDTO {
     private String model;
     private String pricePerDay;
     private String phone;
+    private byte[] image;
 }

@@ -34,4 +34,7 @@ public class Hotel {
     private int price;
     private String amenities;
     private int rooms;
+
+    @Column(name = "image", columnDefinition = "BLOB")
+    private byte[] image; 
 }
