@@ -32,6 +32,15 @@ public class GuideController {
         this.objectMapper = objectMapper;
     }
 
+    @GetMapping
+    public ResponseEntity<List<GuideDTO>> getAllGuides() {
+        List<Guide> guides = guideService.getAllGuides();
+        List<GuideDTO> guideDTOs = guides.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(guideDTOs);
+    }
+
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<GuideDTO> createGuide(
             @RequestParam("guide") String guideJson,

@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/hotels")
@@ -28,6 +30,15 @@ public class HotelController {
         this.objectMapper = objectMapper;
     }
 
+    @GetMapping
+    public ResponseEntity<List<HotelDTO>> getAllHotels() {
+        List<Hotel> hotels = hotelService.getAllHotels();
+        List<HotelDTO> hotelDTOs = hotels.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(hotelDTOs);
+    }
+    
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<HotelDTO> createHotel(
             @RequestParam("hotel") String hotelJson,

@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/vehicles")
@@ -26,6 +28,15 @@ public class VehicleController {
     public VehicleController(VehicleService vehicleService, ObjectMapper objectMapper) {
         this.vehicleService = vehicleService;
         this.objectMapper = objectMapper;
+    }
+
+    @GetMapping
+    public ResponseEntity<List<VehicleDTO>> getAllVehicles() {
+        List<Vehicle> vehicles = vehicleService.getAllVehicles();
+        List<VehicleDTO> vehicleDTOs = vehicles.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(vehicleDTOs);
     }
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
