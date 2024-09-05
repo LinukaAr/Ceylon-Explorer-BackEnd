@@ -1,13 +1,13 @@
 package com.ceylonexplorer.CeylonExplorer.controller;
 
-
-
 import com.ceylonexplorer.CeylonExplorer.dto.VehicleDTO;
 import com.ceylonexplorer.CeylonExplorer.entity.Vehicle;
 import com.ceylonexplorer.CeylonExplorer.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,8 +29,12 @@ public class VehicleController {
         return vehicle != null ? ResponseEntity.ok(convertToDTO(vehicle)) : ResponseEntity.notFound().build();
     }
 
-    @PostMapping
-    public VehicleDTO createVehicle(@RequestBody VehicleDTO vehicleDTO) {
+    @PostMapping(consumes = { "multipart/form-data" })
+    public VehicleDTO createVehicle(
+            @RequestPart("vehicle") String vehicleJson,
+            @RequestPart("image") MultipartFile image) throws Exception {
+        VehicleDTO vehicleDTO = new ObjectMapper().readValue(vehicleJson, VehicleDTO.class);
+        // Handle the image file as needed
         Vehicle vehicle = convertToEntity(vehicleDTO);
         return convertToDTO(vehicleService.saveVehicle(vehicle));
     }
